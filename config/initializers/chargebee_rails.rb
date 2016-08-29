@@ -18,7 +18,7 @@ ChargebeeRails.configure do |config|
   # config.include_delayed_charges = { changes_estimate: false, renewal_estimate: true }
   
   # setup chargebee with your site and api_key
-  config.chargebee_site = 'CHARGEBEE_SITE'
+  config.chargebee_site = 'CHARGEBEE_SITE1'
   config.chargebee_api_key = 'CHARGEBEE_API_KEY'
 
   # Webhook related configurations
