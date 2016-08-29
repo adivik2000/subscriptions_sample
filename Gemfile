@@ -9,6 +9,12 @@ gem 'jquery-rails', '4.1.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
 
+#Use Chargebee Rails Gem for Subscriptions
+gem 'chargebee_rails'
+
+#To talk to the Rest APIs
+gem 'rest-client', '~> 1.8.0'
+
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
