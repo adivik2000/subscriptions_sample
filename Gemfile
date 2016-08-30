@@ -36,6 +36,9 @@ gem 'chargebee_rails'
 #To talk to the Rest APIs
 gem 'rest-client', '~> 1.8.0'
 
+#Bootstrap Framework
+gem 'bootstrap-sass', '3.3.6'
+
 group :production do
   # PostgreSQL for Heroku
   gem 'pg'
