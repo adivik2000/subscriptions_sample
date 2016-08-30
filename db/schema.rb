@@ -10,13 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829052858) do
+ActiveRecord::Schema.define(version: 20160829084638) do
+
+  create_table "event_sync_logs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string   "cb_customer_id"
+    t.boolean  "auto_collection"
+    t.string   "payment_type"
+    t.string   "reference_id"
+    t.string   "card_last4"
+    t.string   "card_type"
+    t.string   "status"
+    t.datetime "event_last_modified_at"
+    t.integer  "subscription_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["subscription_id"], name: "index_payment_methods_on_subscription_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string   "name"
+    t.string   "plan_id"
+    t.string   "status"
+    t.text     "chargebee_data"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "chargebee_id"
+    t.integer  "plan_id"
+    t.integer  "plan_quantity",          default: 1
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "event_last_modified_at"
+    t.text     "chargebee_data"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "chargebee_id"
+    t.datetime "event_last_modified_at"
+    t.text     "chargebee_data"
   end
 
 end
