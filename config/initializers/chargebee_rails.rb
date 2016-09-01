@@ -1,7 +1,7 @@
 ChargebeeRails.configure do |config|
   # This will be the default plan when a subscription is not provided with one
   # make sure that this plan exists in your active record model
-  # config.default_plan_id = 'your_default_plan_id'
+   config.default_plan_id = 'basic'
 
   # Specify the default end of term value for subscription related changes like 
   # subscription updation and cancellation. Setting this as true will make the 
@@ -18,8 +18,8 @@ ChargebeeRails.configure do |config|
   # config.include_delayed_charges = { changes_estimate: false, renewal_estimate: true }
   
   # setup chargebee with your site and api_key
-  config.chargebee_site = 'CHARGEBEE_SITE12'
-  config.chargebee_api_key = 'CHARGEBEE_API_KEY'
+  config.chargebee_site = 'adivik2000-test'
+  config.chargebee_api_key = 'test_DZ4YjSTZlkSUuvPdQTzug0g79sRzMfLr'
 
   # Webhook related configurations
   # Set the controller name that is used to override the webhook events
