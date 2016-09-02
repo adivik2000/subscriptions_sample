@@ -1,0 +1,30 @@
+<% provide(:plan, "Silver") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel=stylesheet href="css/normalize.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+        <header>
+          <a href="index.html" id="logo"><h1>Billing</h1></a>
+         </header>
+    
+
+  <div class="row">
+    <div class="col-md-4">
+       <div class="page-header">
+      <h3>Your Account</h3>
+       <h4>You're currently on the <%= yield(:plan) %> Plan</h4>
+    </div>
+      
+    </div>
+  </div>
+</section>
+
+  </body>
+
+  </html>
