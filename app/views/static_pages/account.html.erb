@@ -10,15 +10,20 @@
 
 <body>
         <header>
-          <a href="index.html" id="logo"><h1>Billing</h1></a>
+          <h1>Account</h1></a>
          </header>
-    
-
   <div class="row">
     <div class="col-md-4">
        <div class="page-header">
-      <h3>Your Account</h3>
-       <h4>You're currently on the <%= yield(:plan) %> Plan</h4>
+      <h3>Your Account:</h3>
+      </div>
+       You're currently on the <%= yield(:plan) %> Plan
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+          <button type="submit" class="btn btn-primary">Change Plan</button>
+        </div>
     </div>
       
     </div>
