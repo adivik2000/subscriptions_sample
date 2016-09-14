@@ -1,4 +1,10 @@
 class BillingController < ApplicationController
+  def show
+    @user = User.find(params[:id])
+    @subscriber = @customer.as_chargebee_customer
+  end
+
+  
   def cancel_subscription
     @user = User.find_by(chargebee_id: params[:id])    
     @user.subscription.cancel({ end_of_term: params[:end_of_term] })
@@ -13,7 +19,7 @@ class BillingController < ApplicationController
   
   def add_card
     @user = User.find(params[:id])
-    result = ChargeBee::Card.update_card_for_customer(user.chargebee_id, {
+    result = ChargeBee::Card.update_card_for_customer(@user.chargebee_id, {
       :gateway => "chargebee", 
       :first_name => "Richard", 
       :last_name => "Fox", 
@@ -22,6 +28,7 @@ class BillingController < ApplicationController
       :expiry_year => 2022, 
       :cvv => "999"
     })
+    @user = result.customer
   end
   
   private

@@ -51,4 +51,15 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  
+   ENV["BRAINTREE_MERCHANT_ID"] ='vjb6mfwhymxqnzfq'
+ 
+   ENV["BRAINTREE_PUB_KEY"] ='9h3t44qpscvvwxhw'
+ 
+   ENV["BRAINTREE_PRV_KEY"] ='f89198d26c47a08a57624fe641bb3b8b'
+ 
+   ENV["STRIPE_PUBLISHABLE_KEY"] ='pk_test_BMzCb0l0wDQgL4MUOHolIMIr'
+   
+   ENV["CHARGEBEE_SITE"] = 'adivik2000-test'
 end

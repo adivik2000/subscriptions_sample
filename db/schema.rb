@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829084638) do
+ActiveRecord::Schema.define(version: 20160908045028) do
 
   create_table "event_sync_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160829084638) do
     t.string   "chargebee_id"
     t.datetime "event_last_modified_at"
     t.text     "chargebee_data"
+    t.string   "remember_digest"
   end
 
 end
