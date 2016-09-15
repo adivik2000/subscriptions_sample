@@ -5,19 +5,8 @@ class User < ApplicationRecord
   # Added by ChargebeeRails.
   has_one :subscription
   serialize :chargebee_data, JSON
-  def update_card
-    @user = User.find(params[:id])
-    result = ChargeBee::Card.update_card_for_customer(@user.chargebee_id, {
-      :gateway => "chargebee", 
-      :first_name => "Richard", 
-      :last_name => "Fox", 
-      :number => "4012888888881881", 
-      :expiry_month => 10, 
-      :expiry_year => 2022, 
-      :cvv => "999"
-    })
-    @user = result.customer
-  end
+  
+  
   
   # Returns the hash digest of the given string.
   def User.digest(string)

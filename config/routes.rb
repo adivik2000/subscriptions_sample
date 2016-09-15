@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'users/:id/hosted_page_checkout_existing' => 'users#hosted_page_checkout_existing', as: "hosted_page_checkout_existing"
   post 'users/:id/checkout_existing' => 'users#checkout_existing'
   get 'users/activate_subscription' => 'users#activate_subscription'
+  get 'invoice_pdf/:id' => 'users#invoice_pdf', as: 'test_pdf'
   
   
   get 'users/new'

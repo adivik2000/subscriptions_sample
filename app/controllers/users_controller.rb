@@ -48,6 +48,17 @@ class UsersController < ApplicationController
     }
   end
   
+  def invoice_pdf
+    @pdf = ChargeBee::Invoice.pdf(params[:id])
+    data = open(@pdf.download.download_url) 
+    send_data data.read, 
+              filename: "NAME YOU WANT.pdf",
+              type: "application/pdf",
+              disposition: 'inline',
+              stream: 'true',
+              buffer_size: '4096'
+  end
+  
   def checkout_existing
     @user = User.find(params[:id])
     @subscriber = @user.as_chargebee_customer
@@ -55,6 +66,7 @@ class UsersController < ApplicationController
     @user.update_subscription(card: { gateway: params[:payment_gateway], tmp_token: tmp_token })
     render json: {success: true, forward: request.base_url+users_path}
   end
+  
   
   private
     # Never trust parameters from the scary internet, only allow the white list through.
