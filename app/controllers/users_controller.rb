@@ -67,6 +67,43 @@ class UsersController < ApplicationController
     render json: {success: true, forward: request.base_url+users_path}
   end
   
+  def cancel_subscription
+    @user = User.find_by(chargebee_id: params[:id])    
+    @user.subscription.cancel({ end_of_term: params[:end_of_term] })
+    redirect_to root_path
+  end
+
+  def add_plan
+    @user = User.find(params[:id])
+    @subscriber = @user.as_chargebee_customer
+    @coupon_list = ChargeBee::Coupon.list(status: 'active')
+    subscription = @user.subscription.as_chargebee_subscription
+    @coupons = subscription.coupons if subscription.present? && subscription.coupons.present?
+  end
+
+  def estimation
+    @user = User.find(params[:customer_id])
+    estimate = Subscription.estimate_changes(
+      subscription: { 
+        id: @user.subscription.chargebee_id, 
+        plan_id: params[:plan_id], 
+        coupon_id: params[:coupon_id]
+    })
+    render json: { subscription_estimate: estimate.subscription_estimate, invoice_estimate: estimate.invoice_estimate, next_invoice_estimate: estimate.next_invoice_estimate }
+  end
+  
+  def change_subscription
+    @user = User.find(params[:user][:id])
+    @user.update_subscription(plan_id: params[:plan_id], coupon: params[:coupon_id])
+    redirect_to users_path
+  end
+  
+  def reactivate_subscription
+    @user = User.find_by(chargebee_id: params[:id])
+    ChargeBee::Subscription.reactivate(@user.chargebee_id)
+    redirect_to users_path
+  end
+  
   
   private
     # Never trust parameters from the scary internet, only allow the white list through.

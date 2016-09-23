@@ -159,6 +159,9 @@
               <td><a href="/users/cancel_subscription/<%= @user.subscription.chargebee_id %>/false" >Cancel subscription immediately</a></td>
               <td><a href="/users/cancel_subscription/<%= @user.subscription.chargebee_id %>/true" >Cancel subscription on next renewal</a></td>
               <% end %>
+              <% if @user.subscription.status == "cancelled"%>
+              <td><a href="/users/reactivate_subscription/<%= @user.subscription.chargebee_id %>" >Reactivate Subscription</a></td>
+              <% end %>
             </tr>
           <% end %>
         </table>

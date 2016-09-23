@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_one :subscription
   serialize :chargebee_data, JSON
   
-  
+  def reactivate
+    update(status: chargebee_subscription.status)
+  end
   
   # Returns the hash digest of the given string.
   def User.digest(string)
